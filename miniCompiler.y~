@@ -57,7 +57,7 @@ extern int yylineno;
 %token COMMA
 
 
-%define parse.error verbose
+%error-verbose
 %start Program
 
 
@@ -78,16 +78,16 @@ MethodDeclarationList    :MethodDeclaration MethodDeclarationList | ;
 extend_key_id            :extends_keyword Identifier | ;
 
 ClassDeclaration         :class_keyword Identifier extend_key_id open_brace VarDeclarationList MethodDeclarationList closed_brace
-			  |error Identifier extend_key_id open_brace VarDeclarationList MethodDeclarationList closed_brace           			{yyerror (" class attendu en ligne : "); YYABORT;}
-					|	class_keyword error extend_key_id open_brace VarDeclarationList MethodDeclarationList closed_brace          {yyerror (" Identifier attendu en ligne : "); YYABORT;}
-					|	class_keyword Identifier extend_key_id error VarDeclarationList MethodDeclarationList closed_brace           				{yyerror (" Accolade ouvrante attendu en ligne : "); YYABORT;}
-					|	class_keyword Identifier extend_key_id open_brace VarDeclarationList MethodDeclarationList error           				{yyerror (" Accolade fermante attendu en ligne : "); YYABORT;};
+			  |error Identifier extend_key_id open_brace VarDeclarationList MethodDeclarationList closed_brace           			{yyerror (" class attendu en ligne : "); YYABORT}
+					|	class_keyword error extend_key_id open_brace VarDeclarationList MethodDeclarationList closed_brace          {yyerror (" Identifier attendu en ligne : "); YYABORT}
+					|	class_keyword Identifier extend_key_id error VarDeclarationList MethodDeclarationList closed_brace           				{yyerror (" Accolade ouvrante attendu en ligne : "); YYABORT}
+					|	class_keyword Identifier extend_key_id open_brace VarDeclarationList MethodDeclarationList error           				{yyerror (" Accolade fermante attendu en ligne : "); YYABORT};
 
 
 VarDeclaration 		 :Type Identifier SEMI_COLON
-				|error Identifier SEMI_COLON    {yyerror (" Type attendu en ligne : "); YYABORT;}
-				|Type error SEMI_COLON     {yyerror (" Identifier attendu en ligne : "); YYABORT;}
-				|Type Identifier error    {yyerror (" Point virgule attendu en ligne : "); YYABORT;};
+				|error Identifier SEMI_COLON    {yyerror (" Type attendu en ligne : "); YYABORT}
+				|Type error SEMI_COLON     {yyerror (" Identifier attendu en ligne : "); YYABORT}
+				|Type Identifier error    {yyerror (" Point virgule attendu en ligne : "); YYABORT};
 
 COMMATypeIdentifierList  : COMMA Type Identifier COMMATypeIdentifierList| ;
 

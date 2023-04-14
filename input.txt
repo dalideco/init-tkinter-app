@@ -1,4 +1,4 @@
-<class Main {
+class Main {
     public static void main(String[] args) {
         person = abc;
         System.out.println("Name: " + person.getName());
@@ -22,4 +22,4 @@ class Student extends Person {
     public String getStudentId() {
         return studentId;
     }
-}>
+}
